@@ -142,6 +142,11 @@ class ErrorHandler implements ListenerAggregateInterface
         // get message and exception (if present)
         $message = $event->getError();
         $exception = $event->getParam('exception');
+
+        if ($exception) {
+            return;
+        }
+
         // generate unique reference for this error
         $chars = md5(uniqid('', true));
         $errorReference = substr($chars, 2, 2) . substr($chars, 12, 2) . substr($chars, 26, 2);
