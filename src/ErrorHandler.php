@@ -3,7 +3,7 @@
  * @author Bikash Poudel <bikash.poudel.com@gmail.com>
  */
 
-namespace GrassRoots\ExceptionLogger\Listener;
+namespace GrassRoots\ErrorHandler;
 
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
@@ -48,8 +48,8 @@ class ErrorHandler implements ListenerAggregateInterface
      */
     public function attach(EventManagerInterface $events)
     {
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_BOOTSTRAP, array($this, 'handleNativeErrors'), 2);
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_BOOTSTRAP, array($this, 'handleFatalErrors'), 1);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_BOOTSTRAP, array($this, 'handleNativeErrors'), -1);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_BOOTSTRAP, array($this, 'handleFatalErrors'), -2);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'handleExceptions'), -1);
         $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'handleExceptions'), -1);
     }
@@ -122,7 +122,7 @@ class ErrorHandler implements ListenerAggregateInterface
             // inject error reference
             $body = str_replace('%__ERROR_REFERENCE__%', 'Error Reference: ' .  $errorReference, $body);
             echo $body;
-            die(1);
+            die;
         });
     }
 
@@ -149,12 +149,48 @@ class ErrorHandler implements ListenerAggregateInterface
         $extras = array(
             'reference' => $errorReference
         );
+
         // check if event has exception and populate extras array.
         if (!empty($exception)) {
-            $message =        $exception->getMessage();
-            $extras['file'] =  $exception->getFile();
-            $extras['line']  = $exception->getLine();
-            $extras['trace'] = $exception->getTraceAsString();
+            $stackTrace   = array();
+
+            $currentTrace = new \stdClass();
+            $currentTrace->class      = get_class($exception);
+            $currentTrace->file       = $exception->getFile();
+            $currentTrace->message    = $exception->getMessage();
+            $currentTrace->stackTrace = $exception->getTraceAsString();
+            $stackTrace[] = $currentTrace;
+
+            //$stackTrace[] = $exception->getTraceAsString();
+
+            $e = $exception->getPrevious();
+            if ($e instanceof \Exception) {
+                while ($e) {
+                    $currentTrace = new \stdClass();
+                    $currentTrace->class = get_class($e);
+                    $currentTrace->file = $e->getFile();
+                    $currentTrace->message = $e->getMessage();
+                    $currentTrace->stackTrace = $e->getTraceAsString();
+                    $stackTrace[] = $currentTrace;
+
+                    $e = $e->getPrevious();
+                }
+            }
+
+            $exceptionBody = '';
+            $i = 0;
+            foreach ($stackTrace as $trace) {
+                if ($i == 1) {
+                    $exceptionBody .= PHP_EOL . PHP_EOL . 'Previous Exceptions' . PHP_EOL . PHP_EOL ;
+                }
+                $i++;
+                $exceptionBody .=  $trace->message . PHP_EOL;
+                $exceptionBody .= $trace->file . PHP_EOL;
+                $exceptionBody .= $trace->class . PHP_EOL;
+                $exceptionBody .= PHP_EOL . $trace->stackTrace . PHP_EOL;
+            }
+
+            $extras['trace'] = $exceptionBody;
         }
 
         // log it

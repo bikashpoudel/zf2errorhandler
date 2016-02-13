@@ -3,8 +3,9 @@
  * @author Bikash Poudel <bikash.poudel.com@gmail.com>
  */
 
-namespace GrassRoots\ExceptionLogger\Listener;
+namespace GrassRoots\ErrorHandler\Service;
 
+use GrassRoots\ErrorHandler\ErrorHandler;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -21,8 +22,7 @@ class ErrorHandlerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $logger = $serviceLocator->get('GrassRoots\Exception\Logger');
-
+        $logger       = $serviceLocator->get('GrassRoots\Exception\Logger');
         $resolver     = $serviceLocator->get('Zend\View\Resolver\TemplatePathStack');
         $templatePath = $resolver->resolve('error/fatal');
 
