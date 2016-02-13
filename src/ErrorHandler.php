@@ -184,10 +184,11 @@ class ErrorHandler implements ListenerAggregateInterface
                     $exceptionBody .= PHP_EOL . PHP_EOL . 'Previous Exceptions' . PHP_EOL . PHP_EOL ;
                 }
                 $i++;
-                $exceptionBody .=  $trace->message . PHP_EOL;
-                $exceptionBody .= $trace->file . PHP_EOL;
-                $exceptionBody .= $trace->class . PHP_EOL;
-                $exceptionBody .= PHP_EOL . $trace->stackTrace . PHP_EOL;
+
+                $exceptionBody .= PHP_EOL . $trace->class . PHP_EOL;
+                $exceptionBody .= PHP_EOL . 'File:' . PHP_EOL . $trace->file . PHP_EOL;
+                $exceptionBody .= PHP_EOL . 'Message:' . PHP_EOL . $trace->message . PHP_EOL;
+                $exceptionBody .= PHP_EOL . 'Stack trace:' . PHP_EOL  . $trace->stackTrace . PHP_EOL;
             }
 
             $extras['trace'] = $exceptionBody;

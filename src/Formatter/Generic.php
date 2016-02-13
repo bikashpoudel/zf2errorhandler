@@ -34,7 +34,6 @@ class Generic implements FormatterInterface
         $exceptionBody .= 'URL:' . $extraParams['uri'] . PHP_EOL;
         $exceptionBody .= 'Session ID:' . $extraParams['session_id'] . PHP_EOL;
         $exceptionBody .= 'IP Address:' . $extraParams['ip'] . PHP_EOL . PHP_EOL;
-        $exceptionBody .= 'Body:' . PHP_EOL . PHP_EOL;
         $exceptionBody .= $extraParams['trace'] . PHP_EOL;
         $exceptionBody .= '$_GET:' . PHP_EOL . print_r($_GET, true);
         $exceptionBody .= '$_POST:' . PHP_EOL . print_r($_POST, true);
