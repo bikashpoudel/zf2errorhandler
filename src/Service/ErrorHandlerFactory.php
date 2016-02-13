@@ -22,7 +22,7 @@ class ErrorHandlerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $logger       = $serviceLocator->get('GrassRoots\Exception\Logger');
+        $logger       = $serviceLocator->get('GrassRoots\Logger\Error');
         $resolver     = $serviceLocator->get('Zend\View\Resolver\TemplatePathStack');
         $templatePath = $resolver->resolve('error/fatal');
 
