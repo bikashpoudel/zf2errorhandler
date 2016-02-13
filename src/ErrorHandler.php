@@ -143,7 +143,7 @@ class ErrorHandler implements ListenerAggregateInterface
         $message = $event->getError();
         $exception = $event->getParam('exception');
 
-        if ($exception) {
+        if (!$exception) {
             return;
         }
 
