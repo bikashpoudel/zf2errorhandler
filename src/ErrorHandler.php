@@ -117,6 +117,9 @@ class ErrorHandler implements ListenerAggregateInterface
             // log error message and the extra info
             $logger->log($priority, $error['message'], $extras);
 
+            $logger->__destruct(); //have to call this manually for some weird reason
+            unset($logger);
+
             // read content of file
             $body = file_get_contents($templatePath);
             // inject error reference
