@@ -28,7 +28,7 @@ class Generic implements FormatterInterface
 
         $exceptionBody = '<pre>';
         $exceptionBody .= 'An error has occurred, the system has captured following information:' . PHP_EOL . PHP_EOL;
-        $exceptionBody .= 'User: ' . $extraParams['user'] ?: 'N/A';
+        $exceptionBody .= 'User: ' . $extraParams['user'] ?: 'N/A' . PHP_EOL;
         $exceptionBody .= 'Date: ' . $datetime->format('d/m/Y H:i:s') . PHP_EOL;
         $exceptionBody .= 'Priority: ' . $priority . PHP_EOL;
         $exceptionBody .= 'URL:' . $extraParams['uri'] . PHP_EOL;
