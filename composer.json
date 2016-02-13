@@ -1,5 +1,5 @@
 {
-  "name": "grassrootsdms/exception-logger",
+  "name": "grassrootsdms/error-handler",
   "description": "Exception logger",
   "require": {
     "zendframework/zend-log": "2.4.7",
