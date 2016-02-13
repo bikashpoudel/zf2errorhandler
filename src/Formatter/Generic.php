@@ -28,12 +28,8 @@ class Generic implements FormatterInterface
 
         $exceptionBody = '<pre>';
         $exceptionBody .= 'An error has occurred, the system has captured following information:' . PHP_EOL . PHP_EOL;
-        $exceptionBody .= 'User: ' . ($extraParams['user'] ?: 'N/A') . PHP_EOL;
         $exceptionBody .= 'Date: ' . $datetime->format('d/m/Y H:i:s') . PHP_EOL;
         $exceptionBody .= 'Priority: ' . $priority . PHP_EOL;
-        $exceptionBody .= 'URL:' . $extraParams['uri'] . PHP_EOL;
-        $exceptionBody .= 'Session ID:' . $extraParams['session_id'] . PHP_EOL;
-        $exceptionBody .= 'IP Address:' . $extraParams['ip'] . PHP_EOL . PHP_EOL;
         $exceptionBody .= $extraParams['trace'] . PHP_EOL;
         $exceptionBody .= '$_GET:' . PHP_EOL . print_r($_GET, true);
         $exceptionBody .= '$_POST:' . PHP_EOL . print_r($_POST, true);
