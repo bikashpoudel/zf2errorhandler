@@ -3,15 +3,13 @@
  * @author Bikash Poudel <bikash.poudel.com@gmail.com>
  */
 
-namespace GrassRoots\ErrorHandler\Formatter;
+namespace GrassRootsDms\ErrorHandler\Formatter;
 
 use Zend\Log\Formatter\FormatterInterface;
 
 /**
  * Class Generic
- *
- * This class can be used to format the errors/exceptions which are written to stream and mail
- * @package GrassRoots\ErrorHandler\Formatter
+ * @package GrassRootsDms\ErrorHandler\Formatter
  */
 class Generic implements FormatterInterface
 {

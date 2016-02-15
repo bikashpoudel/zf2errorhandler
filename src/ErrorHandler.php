@@ -3,7 +3,7 @@
  * @author Bikash Poudel <bikash.poudel.com@gmail.com>
  */
 
-namespace GrassRoots\ErrorHandler;
+namespace GrassRootsDms\ErrorHandler;
 
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
@@ -12,7 +12,7 @@ use Zend\Mvc\MvcEvent;
 
 /**
  * Class ErrorHandler
- * @package GrassRoots\ExceptionLogger\Listener
+ * @package GrassRootsDms\ErrorHandler
  */
 class ErrorHandler implements ListenerAggregateInterface
 {
@@ -71,6 +71,7 @@ class ErrorHandler implements ListenerAggregateInterface
      */
     public function handleNativeErrors(MvcEvent $event)
     {
+        $logger = $this->logger;
         set_error_handler(function ($level, $message, $file, $line) use ($logger) {
             $minErrorLevel = error_reporting();
             if ($minErrorLevel & $level) {

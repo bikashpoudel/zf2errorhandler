@@ -14,7 +14,7 @@
   },
   "autoload" : {
     "psr-4" : {
-      "GrassRoots\\ErrorHandler\\" : "src/"
+      "GrassRootsDms\\ErrorHandler\\" : "src/"
     }
   }
 }
