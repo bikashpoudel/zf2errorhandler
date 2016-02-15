@@ -3,7 +3,7 @@
  * @author Bikash Poudel <bikash.poudel.com@gmail.com>
  */
 
-namespace GrassRootsDms\ErrorHandler;
+namespace GrassRootsDms\ErrorHandler\Logger\Service;
 
 use Zend\Log\Logger;
 use Zend\ServiceManager\FactoryInterface;
