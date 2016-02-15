@@ -1,12 +1,5 @@
 #Installation Guide
 
-* Add the error handler in your global config
-```
-return array(
-	'GrassRootsDms\ErrorHandler\ErrorHandler' => 'GrassRootsDms\ErrorHandler\Service\ErrorHandlerFactory',
-);
-```
-
 * Add your error log configuration
 ```
 $mail = new \Zend\Mail\Message;
@@ -38,3 +31,12 @@ $mail->setEncoding('UTF-8');
 	),
 ),
 ```
+
+* Add the error handler in your global config
+```
+return array(
+	'GrassRootsDms\Logger\Error'              => 'GrassRootsDms\ErrorHandler\Logger\Service\ErrorFactory',
+	'GrassRootsDms\ErrorHandler\ErrorHandler' => 'GrassRootsDms\ErrorHandler\Service\ErrorHandlerFactory',
+);
+```
+
