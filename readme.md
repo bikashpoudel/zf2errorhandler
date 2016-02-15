@@ -1,13 +1,13 @@
 #Installation Guide
 
-Add the error handler in your global config
+* Add the error handler in your global config
 ```
 return array(
 	'GrassRootsDms\ErrorHandler\ErrorHandler' => 'GrassRootsDms\ErrorHandler\Service\ErrorHandlerFactory',
 );
 ```
 
-Add your error logger configuration
+* Add your error log configuration
 ```
 $mail = new \Zend\Mail\Message;
 $mail->setFrom('bikash.poudel@grg.com');
