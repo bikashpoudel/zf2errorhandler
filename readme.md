@@ -9,6 +9,12 @@ return array(
 
 Add your error logger configuration
 ```
+$mail = new \Zend\Mail\Message;
+$mail->setFrom('bikash.poudel@grg.com');
+$mail->setTo('bikash.poudel@grg.com');
+$mail->setSubject('Important: Meeting room tool error!');
+$mail->setEncoding('UTF-8');
+
 'exception_logger' => array(
 	'writers' => array(
 		'stream' => array(
