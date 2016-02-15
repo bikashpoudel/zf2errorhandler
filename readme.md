@@ -1,6 +1,6 @@
 #Installation Guide
 
-* Add your error log configuration
+* Add the erorr log configuration (application.local.php)
 ```
 $mail = new \Zend\Mail\Message;
 $mail->setFrom('bikash.poudel@grg.com');
@@ -34,7 +34,7 @@ return array(
 );
 ```
 
-* Add the error handler in your global config
+* Add the error handler in your global config (global.php)
 ```
 return array(
     'listeners' => array(
@@ -49,7 +49,7 @@ return array(
 );
 ```
 
-* Add your template for the fatal errors
+* Add your template for the fatal errors (global.php)
 ```
 return array(
     'view_manager' => array(
@@ -62,7 +62,7 @@ return array(
 );
 ```
 
-* error/fatal.html
+* error/fatal.html (view/error/fatal.html)
 ```
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
