@@ -35,8 +35,15 @@ $mail->setEncoding('UTF-8');
 * Add the error handler in your global config
 ```
 return array(
-	'GrassRootsDms\Logger\Error'              => 'GrassRootsDms\ErrorHandler\Logger\Service\ErrorFactory',
-	'GrassRootsDms\ErrorHandler\ErrorHandler' => 'GrassRootsDms\ErrorHandler\Service\ErrorHandlerFactory',
+	'listeners' => array(
+        'GrassRootsDms\ErrorHandler\ErrorHandler',
+    ),
+	'service_manager' => array(
+        'factories' => array(
+			'GrassRootsDms\Logger\Error'              => 'GrassRootsDms\ErrorHandler\Logger\Service\ErrorFactory',
+			'GrassRootsDms\ErrorHandler\ErrorHandler' => 'GrassRootsDms\ErrorHandler\Service\ErrorHandlerFactory',
+		),
+	),	
 );
 ```
 
