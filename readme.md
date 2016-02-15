@@ -36,7 +36,6 @@ return array(
 
 * Add the error handler in your global config
 ```
-<?php
 return array(
     'listeners' => array(
         'GrassRootsDms\ErrorHandler\ErrorHandler',
@@ -50,3 +49,15 @@ return array(
 );
 ```
 
+* Add your template for the fatal errors
+```
+return array(
+    'view_manager' => array(
+        ...
+        'template_map' => array(
+                'error/fatal'             => __DIR__ . '../view/error/fatal.phtml',      
+        )
+        ...
+    ),
+);
+```
