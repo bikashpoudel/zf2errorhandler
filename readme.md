@@ -124,3 +124,5 @@ return array(
 </body>
 </html>
 ```
+
+And thats it.. you now have a fully working error handler that logs the errors to either the file of your choice or to you email. Db formatter will follow up in newer versions!
